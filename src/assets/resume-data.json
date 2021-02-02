@@ -1,0 +1,118 @@
+{
+	"cv": {
+		"settings": {
+		    "name": "My CV",
+		    "color": "whi",
+		    "format": 28,
+		    "fontFace": "lit-lit",
+		    "fontSize": "fs-13",
+		    "template": "basic",
+		    "dateFormat": "dd/mm/yyyy",
+		    "lineHeight": "lh-16",
+		    "pageFormat": "a4",
+		    "pageNumber": "",
+		    "addressFormat": {
+		        "order": [
+		            [
+		                "name"
+		            ],
+		            [
+		                "address"
+		            ],
+		            [
+		                "city",
+		                "postal"
+		            ],
+		            [
+		                "country"
+		            ]
+		        ],
+		        "delimiter": " "
+		    }
+		},
+		"general": {
+		    "city": "",
+		    "icon": "single-neutral-actions",
+		    "name": "Personal Information",
+		    "note": null,
+		    "postal": "",
+		    "street": "",
+		    "country": "",
+		    "birthKey": "Date of birth",
+		    "emailKey": "Email address",
+		    "phoneKey": "Phone number",
+		    "backTitle": "",
+		    "birthDate": "",
+		    "addressKey": "Address",
+		    "emailValue": "john.doe@example.org",
+		    "frontTitle": "",
+		    "phoneValue": "",
+		    "websiteKey": "Web",
+		    "avatarShown": false,
+		    "description": "",
+		    "lastNameKey": "Last name",
+		    "nationality": "",
+		    "firstNameKey": "First name",
+		    "websiteValue": "https://www.example.org",
+		    "lastNameValue": "Doe",
+		    "descriptionKey": "Profile",
+		    "firstNameValue": "John",
+		    "nationalityKey": "Nationality",
+		    "customFieldOneKey": "Custom field",
+		    "customFieldTwoKey": "Custom field",
+		    "customFieldOneValue": "",
+		    "customFieldTwoValue": ""
+		},
+		"sections": [
+		    {
+		        "data": {
+		            "type": "work",
+		            "entries": [
+		                {
+		                    "city": "New York",
+		                    "note": null,
+		                    "uuid": "454a0c0d-c026-4525-bb11-3b712777bf63",
+		                    "company": "AcmeCorp Ltd.",
+		                    "country": "USA",
+		                    "current": true,
+		                    "endDate": [
+		                        "01",
+		                        ""
+		                    ],
+		                    "jobTitle": "General Manager",
+		                    "startDate": [
+		                        "01",
+		                        "2018"
+		                    ],
+		                    "description": "<ul><li>Developed an in depth staff training manual to be used to train new staff of store policies and procedures.</li><li>Engaged with clients on a daily basis to create long-term bonds.</li></ul>",
+		                    "presentValue": "present"
+		                },
+		                {
+		                    "city": "Newark",
+		                    "note": "",
+		                    "uuid": "3e8f1c8f-c242-436d-9203-7d32025e6339",
+		                    "company": "Random Technologies Ltd.",
+		                    "country": "USA",
+		                    "current": false,
+		                    "endDate": [
+		                        "01",
+		                        "2018"
+		                    ],
+		                    "jobTitle": "Regional Manager",
+		                    "startDate": [
+		                        "05",
+		                        "2016"
+		                    ],
+		                    "description": "<ul><li>Cost and revenue planning, reporting and working closely with buyers, sales and account managers.</li><li>Responsible for business development, growth and budgeting, meeting established financial and economical targets.</li></ul>",
+		                    "presentValue": "present"
+		                }
+		            ]
+		        },
+		        "icon": "briefcase",
+		        "name": "Work experience",
+		        "type": "experience",
+		        "uuid": "6e6b92fd-7a38-4f09-9853-c7ee99a39136"
+		    }
+		]
+	}
+}
