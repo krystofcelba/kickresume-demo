@@ -1,8 +1,10 @@
 import React, { useCallback } from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { Collapse, Div, Icon, Input, Text } from "react-native-magnus";
-import { Button, TextInput } from "react-native-paper";
+import { Button, Subheading, TextInput } from "react-native-paper";
+import FormMonthPickerInput from "./inputs/FormMonthPickerInput";
 import FormRichTextInput from "./inputs/FormRichTextInput";
+import FormSwitchInput from "./inputs/FormSwitchInput";
 import FormTextInput from "./inputs/FormTextInput";
 
 const NAME = "workExperiences";
@@ -83,6 +85,32 @@ function ResumeFormWorkExperiencesSection() {
               control={control}
               name={`${NAME}[${index}].country`}
               defaultValue={item.country}
+            />
+
+            <Subheading>Time period</Subheading>
+
+            <FormMonthPickerInput
+              icon="calendar-week-begin"
+              label="From"
+              control={control}
+              name={`${NAME}[${index}].startDate`}
+              defaultValue={item.startDate}
+            />
+
+            <FormMonthPickerInput
+              icon="calendar-weekend"
+              label="To"
+              control={control}
+              name={`${NAME}[${index}].endDate`}
+              defaultValue={item.startDate}
+              present={watch(`${NAME}[${index}].current`)}
+            />
+
+            <FormSwitchInput
+              control={control}
+              name={`${NAME}[${index}].current`}
+              defaultValue={false}
+              label="I currently work here"
             />
 
             <FormRichTextInput
