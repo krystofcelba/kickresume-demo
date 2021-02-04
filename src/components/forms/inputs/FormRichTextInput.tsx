@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 
 import { useController } from "react-hook-form";
-import { RichEditor } from "react-native-pell-rich-editor";
+import { RichEditor, RichToolbar } from "react-native-pell-rich-editor";
 
 function FormRichTextInput({
   control,
@@ -20,14 +20,20 @@ function FormRichTextInput({
   });
   const editorRef = useRef(null);
 
+  const editorInitializedCallback = () => {
+    editorRef.current.registerToolbar(() => {});
+  };
+
   return (
-    <RichEditor
-      ref={editorRef}
-      initialContentHTML={
-        "Hello <b>World</b> <p>this is a new paragraph</p> <p>this is another new paragraph</p>"
-      }
-      onChange={onChange}
-    />
+    <>
+      <RichEditor
+        ref={editorRef}
+        initialContentHTML={defaultValue}
+        onChange={onChange}
+        editorInitializedCallback={() => {}}
+      />
+      <RichToolbar getEditor={() => editorRef.current} />
+    </>
   );
 }
 

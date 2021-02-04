@@ -1,39 +1,64 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  SafeAreaView,
-  KeyboardAvoidingView,
-} from "react-native";
-import { useForm, useFieldArray, FormProvider } from "react-hook-form";
-import { isAndroid } from "src/utils";
-import ResumeFormWorkExperiencesSection from "src/components/forms/ResumeFormWorkExperiencesSection";
-import initialData from "src/assets/resume-data.json";
+import { StyleSheet, SafeAreaView, KeyboardAvoidingView } from "react-native";
+import { useForm, FormProvider } from "react-hook-form";
+
 import { ScrollView } from "react-native-gesture-handler";
+
+import { isAndroid } from "src/utils";
+import { Div } from "react-native-magnus";
+import { Button } from "react-native-paper";
+import useSagaReducer from "use-saga-reducer";
+
+import ResumeFormWorkExperiencesSection from "src/components/forms/ResumeFormWorkExperiencesSection";
+
+import initialData from "src/assets/resume-data.json";
+import { reducer, saga } from "./EditResumeFormScreen.reducer";
 
 function EditResumeFormScreen() {
   const workExperiences = initialData.cv.sections[0].data.entries;
-  const methods = useForm({
+  const formMethods = useForm({
     defaultValues: { workExperiences },
   });
-  const { watch } = methods;
+  const { watch, handleSubmit } = formMethods;
+
+  const [state, dispatch] = useSagaReducer(saga, reducer, {
+    submitting: false,
+    submissionStateMessage: "",
+  });
+
+  const { submitting, submissionStateMessage } = state;
 
   console.log(watch());
+
+  const onSubmit = (data) => {
+    dispatch({ type: "SUBMIT", data });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         style={styles.keyboardAvoidingView}
         behavior={isAndroid() ? undefined : "padding"}
-        keyboardVerticalOffset={isAndroid() ? 25 : 0}
+        keyboardVerticalOffset={isAndroid() ? 25 : 100}
       >
-        <FormProvider {...methods}>
+        <FormProvider {...formMethods}>
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             contentContainerStyle={styles.formContainer}
           >
             <ResumeFormWorkExperiencesSection />
+
+            <Div pt="md">
+              <Button
+                icon="application-export"
+                mode="contained"
+                color="#2f855a"
+                loading={submitting}
+                onPress={handleSubmit(onSubmit)}
+              >
+                {submitting ? submissionStateMessage : "Submit"}
+              </Button>
+            </Div>
           </ScrollView>
         </FormProvider>
       </KeyboardAvoidingView>

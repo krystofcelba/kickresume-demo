@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
-import { Button, Collapse, Div, Icon, Input, Text } from "react-native-magnus";
-import { TextInput } from "react-native-paper";
+import { Collapse, Div, Icon, Input, Text } from "react-native-magnus";
+import { Button, TextInput } from "react-native-paper";
 import FormRichTextInput from "./inputs/FormRichTextInput";
 import FormTextInput from "./inputs/FormTextInput";
 
 const NAME = "workExperiences";
+
+const NEW_EXPERIENCE_DATA = {
+  city: "",
+  note: null,
+  company: "",
+  country: "",
+  current: true,
+  endDate: ["01", ""],
+  jobTitle: "",
+  startDate: ["01", "2018"],
+  description: "",
+  presentValue: "",
+  defaultActive: true,
+};
 
 function ResumeFormWorkExperiencesSection() {
   const { control, watch } = useFormContext();
@@ -17,23 +31,35 @@ function ResumeFormWorkExperiencesSection() {
     }
   );
 
+  const onAddButtonClicked = useCallback(() => {
+    append(NEW_EXPERIENCE_DATA, true);
+  }, [append]);
+
   return (
-    <Div>
+    <Div bg="yellow100" p={"sm"} rounded={5}>
       {fields.map((item, index) => (
-        <Collapse key={item.id}>
+        <Collapse key={item.id} defaultActive={item.defaultActive}>
           <Collapse.Header
             active
-            color="gray900"
+            color="white"
             bg="blue500"
-            fontSize="md"
+            fontSize="xl"
             p="xl"
             px="none"
             pl="xl"
-            prefix={<Icon name="wallet" mr="md" color="gray400" />}
+            prefix={
+              <Icon
+                name="briefcase-outline"
+                mr="md"
+                color="white"
+                fontSize="xl"
+                fontFamily="MaterialCommunityIcons"
+              />
+            }
           >
             {watch(`${NAME}[${index}].company`)}
           </Collapse.Header>
-          <Collapse.Body bg="orange100" py={30}>
+          <Collapse.Body bg="orange200" py={30}>
             <FormTextInput
               label="Company"
               control={control}
@@ -64,11 +90,29 @@ function ResumeFormWorkExperiencesSection() {
               name={`${NAME}[${index}].description`}
               defaultValue={item.description}
             />
-
-            <Div h={20} />
+            <Div pt="xl">
+              <Button
+                icon="delete"
+                color="#e53e3e"
+                mode="contained"
+                onPress={() => remove(index)}
+              >
+                Delete
+              </Button>
+            </Div>
           </Collapse.Body>
         </Collapse>
       ))}
+      <Div pt="md">
+        <Button
+          icon="plus"
+          mode="outlined"
+          color="#2f855a"
+          onPress={onAddButtonClicked}
+        >
+          Add work experience
+        </Button>
+      </Div>
     </Div>
   );
 }
