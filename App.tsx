@@ -3,7 +3,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { enableScreens } from "react-native-screens";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";
 import { ThemeProvider } from "react-native-magnus";
-import { Provider as PaperProvider } from "react-native-paper";
+import { Appbar, Provider as PaperProvider } from "react-native-paper";
 import * as SecureStore from "expo-secure-store";
 import * as SplashScreen from "expo-splash-screen";
 
@@ -56,6 +56,14 @@ function App() {
     bootstrapAsync();
   }, []);
 
+  const onLogoutClicked = async () => {
+    await SecureStore.deleteItemAsync(Constants.authTokenKey);
+    authDispatch({
+      type: "SET_AUTH_TOKEN",
+      authToken: undefined,
+    });
+  };
+
   if (isLoading) {
     // We haven't finished checking for the token yet
     return null;
@@ -91,6 +99,16 @@ function App() {
                   <Stack.Screen
                     name="EditResumeFormScreen"
                     component={EditResumeFormScreen}
+                    options={{
+                      title: "My Resume",
+                      headerLeft: ({ tintColor }) => (
+                        <Appbar.Action
+                          color={tintColor}
+                          icon="logout"
+                          onPress={onLogoutClicked}
+                        />
+                      ),
+                    }}
                   />
                 )}
               </Stack.Navigator>
