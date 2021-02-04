@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 
-type Action = { type: "SET_AUTH_TOKEN"; authToken: string };
+type Action = { type: "SET_AUTH_TOKEN"; authToken?: string };
 type Dispatch = (action: Action) => void;
 type State = { authToken: string | undefined };
 

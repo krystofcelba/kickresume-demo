@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import { useController } from "react-hook-form";
 import { TextInput } from "react-native-paper";
+import FormInputContainer from "./FormInputContainer";
 
 function FormTextInput({
   control,
@@ -20,17 +21,16 @@ function FormTextInput({
   });
 
   return (
-    <TextInput
-      mode="outlined"
-      value={value}
-      onBlur={onBlur}
-      onChangeText={(value) => onChange(value)}
-      {...otherProps}
-      style={styles.input}
-    />
+    <FormInputContainer>
+      <TextInput
+        mode="outlined"
+        value={value}
+        onBlur={onBlur}
+        onChangeText={(value) => onChange(value)}
+        {...otherProps}
+      />
+    </FormInputContainer>
   );
 }
-
-const styles = StyleSheet.create({ input: { paddingBottom: 10 } });
 
 export default FormTextInput;

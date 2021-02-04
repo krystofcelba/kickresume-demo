@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 
 import { useController } from "react-hook-form";
 import { RichEditor, RichToolbar } from "react-native-pell-rich-editor";
+import FormInputContainer from "./FormInputContainer";
 
 function FormRichTextInput({
   control,
@@ -25,7 +26,7 @@ function FormRichTextInput({
   };
 
   return (
-    <>
+    <FormInputContainer>
       <RichEditor
         ref={editorRef}
         initialContentHTML={defaultValue}
@@ -33,7 +34,7 @@ function FormRichTextInput({
         editorInitializedCallback={() => {}}
       />
       <RichToolbar getEditor={() => editorRef.current} />
-    </>
+    </FormInputContainer>
   );
 }
 

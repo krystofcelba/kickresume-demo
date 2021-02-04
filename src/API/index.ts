@@ -34,7 +34,7 @@ async function login(data) {
 async function createCV() {
   console.log("create");
   const resp = await APIClient.post(
-    "https://test1.kickresume.com/api/resumes/"
+    "/resumes/"
   );
 
   return resp.data;
@@ -43,7 +43,7 @@ async function createCV() {
 async function updateCV(cv_id, data) {
   console.log("create");
   const resp = await APIClient.put(
-    `https://test1.kickresume.com/api/cvs/${cv_id}/`,
+    `/cvs/${cv_id}/`,
     data
   );
 
@@ -53,7 +53,7 @@ async function updateCV(cv_id, data) {
 async function getPDFUrl(cv_id) {
   console.log("getting pdf");
   const resp = await APIClient.get(
-    `https://test1.kickresume.com/api/cvs/${cv_id}/pdf/`
+    `/cvs/${cv_id}/pdf/`
   );
 
   return resp.data;

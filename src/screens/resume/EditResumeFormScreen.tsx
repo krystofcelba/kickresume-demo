@@ -52,7 +52,6 @@ function EditResumeFormScreen() {
               <Button
                 icon="application-export"
                 mode="contained"
-                color="#2f855a"
                 loading={submitting}
                 onPress={handleSubmit(onSubmit)}
               >

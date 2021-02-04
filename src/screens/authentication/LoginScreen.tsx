@@ -2,15 +2,15 @@ import React from "react";
 import { Controller, FormProvider, useForm } from "react-hook-form";
 import {
   Alert,
-  Button,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   KeyboardAvoidingView,
 } from "react-native";
+import { Button } from "react-native-paper";
 import * as SecureStore from "expo-secure-store";
-import API from "../../API";
-import { errorToAlertMessage, isAndroid } from "../../utils";
+import API from "src/API";
+import { errorToAlertMessage, isAndroid } from "src/utils";
 import { Constants } from "src/assets";
 import { useNavigation } from "@react-navigation/native";
 import { useAuthDispatch } from "src/contexts/AuthContext";
@@ -66,17 +66,19 @@ const LoginScreen = () => {
             />
 
             <Button
-              title="Login"
+              mode="contained"
               color="#710ce3"
               onPress={handleSubmit(onSubmit)}
-            />
+            >
+              Login
+            </Button>
             <Button
-              title="Register"
-              color="#710ce3"
               onPress={() => {
                 navigation.navigate("RegistrationScreen");
               }}
-            />
+            >
+              Register
+            </Button>
           </FormProvider>
         </ScrollView>
       </KeyboardAvoidingView>
