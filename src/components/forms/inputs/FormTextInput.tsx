@@ -1,9 +1,15 @@
 import React from "react";
-
+import { StyleSheet } from "react-native";
 import { useController } from "react-hook-form";
 import { TextInput } from "react-native-paper";
 
-function FormTextInput({ control, name, defaultValue, rules = {}, ...otherProps }) {
+function FormTextInput({
+  control,
+  name,
+  defaultValue = "",
+  rules = {},
+  ...otherProps
+}) {
   const {
     field: { value, onBlur, onChange },
   } = useController({
@@ -20,9 +26,11 @@ function FormTextInput({ control, name, defaultValue, rules = {}, ...otherProps 
       onBlur={onBlur}
       onChangeText={(value) => onChange(value)}
       {...otherProps}
-      style={{paddingBottom: 10}}
+      style={styles.input}
     />
   );
 }
+
+const styles = StyleSheet.create({ input: { paddingBottom: 10 } });
 
 export default FormTextInput;
